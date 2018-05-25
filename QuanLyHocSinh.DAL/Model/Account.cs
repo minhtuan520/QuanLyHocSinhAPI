@@ -7,7 +7,7 @@ namespace QuanLyHocSinh.DAL.Model
     {
         public string Username { get; set; }
         public string Password { get; set; }
-        public double? Idtype { get; set; }
+        public bool Idtype { get; set; }
 
         public Typeaccount IdtypeNavigation { get; set; }
     }

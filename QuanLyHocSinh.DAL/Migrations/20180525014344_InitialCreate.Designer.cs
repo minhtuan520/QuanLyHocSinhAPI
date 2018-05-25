@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
+using Microsoft.EntityFrameworkCore.Storage;
 using Microsoft.EntityFrameworkCore.Storage.Internal;
 using QuanLyHocSinh.DAL.Model;
 using System;
@@ -10,8 +11,8 @@ using System;
 namespace QuanLyHocSinh.DAL.Migrations
 {
     [DbContext(typeof(QuanLyHocSinhSqlContext))]
-    [Migration("20180524015602_FirstSetup")]
-    partial class FirstSetup
+    [Migration("20180525014344_InitialCreate")]
+    partial class InitialCreate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -27,7 +28,7 @@ namespace QuanLyHocSinh.DAL.Migrations
                         .HasMaxLength(255)
                         .IsUnicode(false);
 
-                    b.Property<double?>("Idtype")
+                    b.Property<bool>("Idtype")
                         .HasColumnName("IDTYPE");
 
                     b.Property<string>("Password")
@@ -300,7 +301,7 @@ namespace QuanLyHocSinh.DAL.Migrations
 
             modelBuilder.Entity("QuanLyHocSinh.DAL.Model.Typeaccount", b =>
                 {
-                    b.Property<double>("Idtype")
+                    b.Property<bool>("Idtype")
                         .HasColumnName("IDTYPE");
 
                     b.Property<string>("Name")
@@ -335,7 +336,8 @@ namespace QuanLyHocSinh.DAL.Migrations
                     b.HasOne("QuanLyHocSinh.DAL.Model.Typeaccount", "IdtypeNavigation")
                         .WithMany("Account")
                         .HasForeignKey("Idtype")
-                        .HasConstraintName("FK_ACCOUNT_TYPEACCOUNT");
+                        .HasConstraintName("FK_ACCOUNT_TYPEACCOUNT")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("QuanLyHocSinh.DAL.Model.Class", b =>

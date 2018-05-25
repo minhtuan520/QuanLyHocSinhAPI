@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace QuanLyHocSinh.DAL.Migrations
 {
-    public partial class FirstSetup : Migration
+    public partial class InitialCreate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -77,7 +77,7 @@ namespace QuanLyHocSinh.DAL.Migrations
                 name: "TYPEACCOUNT",
                 columns: table => new
                 {
-                    IDTYPE = table.Column<double>(nullable: false),
+                    IDTYPE = table.Column<bool>(nullable: false),
                     NAME = table.Column<string>(unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
@@ -164,7 +164,7 @@ namespace QuanLyHocSinh.DAL.Migrations
                 columns: table => new
                 {
                     USERNAME = table.Column<string>(unicode: false, maxLength: 255, nullable: false),
-                    IDTYPE = table.Column<double>(nullable: true),
+                    IDTYPE = table.Column<bool>(nullable: false),
                     PASSWORD = table.Column<string>(unicode: false, maxLength: 255, nullable: true)
                 },
                 constraints: table =>
@@ -175,7 +175,7 @@ namespace QuanLyHocSinh.DAL.Migrations
                         column: x => x.IDTYPE,
                         principalTable: "TYPEACCOUNT",
                         principalColumn: "IDTYPE",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(

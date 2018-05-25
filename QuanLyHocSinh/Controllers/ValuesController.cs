@@ -12,13 +12,20 @@ namespace QuanLyHocSinh.Controllers
     {
         // GET api/values
         [HttpGet]
-        public Account Get()
+        public List<Account> Get()
         {
             QuanLyHocSinhSqlContext context = new QuanLyHocSinhSqlContext();
-            var test = context.Account.Where(a => a.Username == "HS00000010").Take(1).ToList();
-            if (test.Count > 0)
+            var test = context.Account.Take(5).ToList();
+            if (test.Count == 5)
             {
-                return test[0];
+                List<Account> result = new List<Account>();
+                result.Add(test[0]);
+                result.Add(test[1]);
+                result.Add(test[2]);
+                result.Add(test[3]);
+                result.Add(test[4]);
+
+                return result;
             }
             else
             {

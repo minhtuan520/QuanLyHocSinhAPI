@@ -10,7 +10,7 @@ namespace QuanLyHocSinh.DAL.Model
             Account = new HashSet<Account>();
         }
 
-        public double Idtype { get; set; }
+        public bool Idtype { get; set; }
         public string Name { get; set; }
 
         public ICollection<Account> Account { get; set; }
